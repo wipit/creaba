@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-3">
 	        {!! Form::model($usuario, ['url' => '/imagen', 'method' => 'patch', 'files' => true]) !!}
-	            <figure id="pic" style="background-image: url({{ ($usuario->imagen) ? Storage::url($usuario->imagen) : 'img/avatar.jpg' }});">
+	            <figure id="pic" style="background-image: url('{{ $usuario->getImagen() }}');">
 	            	<span class="dummy"></span>
 	            	<span class="cambiar">cambiar imagen</span>
 	            </figure>

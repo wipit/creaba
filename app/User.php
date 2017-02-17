@@ -26,4 +26,8 @@
         public static function getTotal() {
             return User::with('estudios', 'titulos')->get();
         }
+
+        public function getImagen() {
+            return ($this->imagen) ? \Storage::url($this->imagen) : 'img/avatar.jpg';
+        }
     }

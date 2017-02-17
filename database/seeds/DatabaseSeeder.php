@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\User;
-use App\Titulo;
+use creaBuenosAires\User;
+use creaBuenosAires\Titulo;
 
 class DatabaseSeeder extends Seeder
 {
