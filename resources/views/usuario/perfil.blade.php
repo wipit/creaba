@@ -2,7 +2,7 @@
 @section('content')
 <div class="container" id="perfil">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 fondo gris">
 	        {!! Form::model($usuario, ['url' => '/imagen', 'method' => 'patch', 'files' => true]) !!}
 	            <figure id="pic" style="background-image: url('{{ $usuario->getImagen() }}');">
 	            	<span class="dummy"></span>

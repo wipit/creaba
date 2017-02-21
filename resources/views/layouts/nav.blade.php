@@ -31,7 +31,7 @@
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Hola, {{ Auth::user()->nombre }} <figure style="background-image: url({{ (Auth::user()->imagen) ? Storage::url(Auth::user()->imagen) : 'img/avatar.jpg' }});"><span class="dummy"></span></figure> <span class="caret"></span>
+                            Hola, {{ Auth::user()->nombre }} <figure style="background-image: url({{ Auth::user()->getImagen() }});"><span class="dummy"></span></figure> <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">

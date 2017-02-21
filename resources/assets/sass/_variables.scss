@@ -1,6 +1,9 @@
+// Colores
+$gris: #d9d9d9;
+$violeta: #20124d;
 
 // Body
-$body-bg: #f5f8fa;
+$body-bg: #f3f3f3;
 
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
@@ -30,8 +33,8 @@ $navbar-default-bg: #fff;
 $btn-default-color: $text-color;
 
 // Inputs
-$input-border: lighten($text-color, 40%);
-$input-border-focus: lighten($brand-primary, 25%);
+$input-border: lighten($violeta, 70%);
+$input-border-focus: lighten($violeta, 90%);
 $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels

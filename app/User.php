@@ -3,6 +3,8 @@
     use Illuminate\Notifications\Notifiable;
     use Illuminate\Foundation\Auth\User as Authenticatable;
     use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Http\Request;
+    use Auth;
 
     class User extends Authenticatable {
         use Notifiable;
@@ -29,5 +31,13 @@
 
         public function getImagen() {
             return ($this->imagen) ? \Storage::url($this->imagen) : 'img/avatar.jpg';
+        }
+
+        public static function cambiarImagen(Request $request) {
+            if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
+                \Storage::delete(User::find(\Auth::id())->imagen);
+                $imagen = $request->file('imagen')->store('public/perfiles');
+                User::find(Auth::id())->update(['imagen' => $imagen]);
+            }
         }
     }

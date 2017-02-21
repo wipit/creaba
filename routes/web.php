@@ -13,12 +13,14 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('Home');
+Route::get('/', 'PageController@index')->name('Bienvenida')->middleware("guest");
+
+Route::get('/home', 'PageController@home')->name('Home');
 
 Route::get('/usuarios', 'UserController@index')->name('Usuarios');
 
-Route::middleware('auth')->get('/perfil', 'UserController@perfil')->name('Perfil');
+Route::get('/perfil', 'UserController@perfil')->name('Perfil');
 
-Route::middleware('auth')->patch('/perfil', 'UserController@update');
+Route::patch('/perfil', 'UserController@update');
 
-Route::middleware('auth')->patch('/imagen', 'UserController@updateImagen');
+Route::patch('/imagen', 'UserController@updateImagen');
