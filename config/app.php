@@ -178,7 +178,7 @@ return [
         creaBuenosAires\Providers\EventServiceProvider::class,
         creaBuenosAires\Providers\RouteServiceProvider::class,
         creaBuenosAires\Providers\FormacionServiceProvider::class,
-
+        creaBuenosAires\Providers\InteresesServiceProvider::class,
     ],
 
     /*

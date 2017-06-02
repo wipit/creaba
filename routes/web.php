@@ -22,5 +22,3 @@ Route::get('/usuarios', 'UserController@index')->name('Usuarios');
 Route::get('/perfil', 'UserController@perfil')->name('Perfil');
 
 Route::patch('/perfil', 'UserController@update');
-
-Route::patch('/imagen', 'UserController@updateImagen');

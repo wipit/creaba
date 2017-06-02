@@ -1,6 +1,9 @@
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600|Dancing+Script|Slabo+27px);
 
+// Font Awesome
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
 // Variables
 @import "variables";
 
@@ -58,6 +61,38 @@ body {
 						.cambiar {
 							opacity: 1;
 						}
+					}
+				}
+				form {
+					#intereses {
+						.interes {
+							background: $lila;
+							color: white;
+							display: inline-block;
+							padding: 5px 10px;
+    						margin: 0 5px 10px 0;
+    						cursor: pointer;
+    						input[type="checkbox"] {
+							    display: none;
+							}
+							&:hover {
+								background: darken($lila, 15%);
+							}
+    						&.selected {
+    							background: $violeta;
+    						}
+						}
+					}
+					input[type="submit"] {
+					    width: 100%;
+					    margin: 40px 0;
+					    border-radius: 0;
+					    border: none;
+					    color: white;
+					    background: $lila;
+					    &:hover {
+					    	background: $violeta;
+					    }
 					}
 				}
 			}

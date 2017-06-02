@@ -25,19 +25,15 @@
             return $this->hasOne('creaBuenosAires\Titulo', 'id', 'titulo');
         }
 
+        public function intereses() {
+            return $this->belongsToMany('creaBuenosAires\Interes');
+        }
+
         public static function getTotal() {
             return User::with('estudios', 'titulos')->get();
         }
 
         public function getImagen() {
             return ($this->imagen) ? \Storage::url($this->imagen) : 'img/avatar.jpg';
-        }
-
-        public static function cambiarImagen(Request $request) {
-            if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
-                \Storage::delete(User::find(\Auth::id())->imagen);
-                $imagen = $request->file('imagen')->store('public/perfiles');
-                User::find(Auth::id())->update(['imagen' => $imagen]);
-            }
         }
     }

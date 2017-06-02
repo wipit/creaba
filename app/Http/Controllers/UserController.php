@@ -4,6 +4,7 @@
     use creaBuenosAires\Http\Requests\ImageFormRequest;
     use creaBuenosAires\Http\Requests\PerfilFormRequest;
     use creaBuenosAires\User;
+    use Illuminate\Support\Facades\Storage;
     use Auth;
 
     class UserController extends Controller {
@@ -15,19 +16,20 @@
             return view('usuario.lista')->with('lista', User::getTotal());
         }
 
-        public function updateImagen(Request $request, ImageFormRequest $validation) {
-            User::cambiarImagen($request);
-            return redirect()->route('Perfil');
-        }
-
         public function update(Request $request, PerfilFormRequest $validation) {
-            $user = User::find(Auth::id())->update($request->all());
+            if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
+                Storage::delete(User::find(Auth::id())->imagen);
+                $imagen = $request->file('imagen')->store('public/perfiles');
+                User::find(Auth::id())->update(['imagen' => $imagen]);
+            }
+            $user = User::find(Auth::id())->update($request->except(['imagen']));
+            User::find(Auth::id())->intereses()->sync($request->intereses);
             $request->session()->flash('mensaje', 'Perfil guardado exitosamente');
             return redirect()->route('Perfil');
         }
 
         public function perfil() {
-            $usuario =  User::with('estudios', 'titulos')->findOrFail(Auth::id());
-            return view('usuario.perfil', compact('usuario', 'estudios', 'titulos'));
+            $usuario =  User::with('estudios', 'titulos', 'intereses')->findOrFail(Auth::id());
+            return view('usuario.perfil', compact('usuario', 'estudios', 'titulos', 'intereses'));
         }
     }

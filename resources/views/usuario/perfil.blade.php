@@ -2,17 +2,11 @@
 @section('content')
 <div class="container" id="perfil">
     <div class="row">
-        <div class="col-md-3 fondo gris">
-	        {!! Form::model($usuario, ['url' => '/imagen', 'method' => 'patch', 'files' => true]) !!}
-	            <figure id="pic" style="background-image: url('{{ $usuario->getImagen() }}');">
-	            	<span class="dummy"></span>
-	            	<span class="cambiar">cambiar imagen</span>
-	            </figure>
-	            <div class="hidden">{!! Form::file('imagen', ['id' => 'avatar']); !!}</div>
-	        {!! Form::close() !!}
-        </div>
-        <div class="col-md-8 col-md-offset-1">
-        	{!! Form::model($usuario, ['url' => '/perfil', 'method' => 'patch', 'files' => true]) !!}
+    	{!! Form::model($usuario, ['url' => '/perfil', 'method' => 'patch', 'files' => true]) !!}
+    		<div class="col-md-3 fondo gris">
+    			<div id="foto_perfil"><avatar imagen="{{ $usuario->getImagen() }}"></avatar></div>
+    		</div>
+    		<div class="col-md-8 col-md-offset-1">
             	<div class="form-group">
             		<label class="radio-inline">{!! Form::radio('sexo', 'F'); !!} Mujer</label>
 					<label class="radio-inline">{!! Form::radio('sexo', 'M'); !!} Hombre</label>
@@ -35,10 +29,23 @@
 					{!! Form::select('titulo', $titulos, null, ['class'=>'form-control']); !!}
 				</div>	
 				<h4>Mis redes sociales</h4>
+				<div id="redes">
+					<i class="fa fa-facebook fa-2x" aria-hidden="true"></i>
+					<i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+					<i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+				</div>
 				<h4>Mis intereses</h4>
+				<div id="intereses">
+					@foreach ($intereses as $id=>$interes)
+						<label class="interes {{ $usuario->intereses->contains('id', $id) ? 'selected' : '' }}">
+							{{ $interes }}
+							<input type="checkbox" name="intereses[]" value="{{$id}}" {{ $usuario->intereses->contains('id', $id) ? 'checked' : '' }}>
+						</label>
+					@endforeach
+				</div>
 				{!! Form::submit('Guardar', ['class' => 'btn btn-default']) !!}
-			{!! Form::close() !!}
-        </div>
+			</div>
+		{!! Form::close() !!}
     </div>
 </div>
 @endsection

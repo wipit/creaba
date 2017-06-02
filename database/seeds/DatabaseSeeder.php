@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use creaBuenosAires\User;
 use creaBuenosAires\Titulo;
+use creaBuenosAires\Interes;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         // factory(User::class, 10)->create();
-        factory(Titulo::class, 25)->create();
+        // factory(Titulo::class, 25)->create();
+        factory(Interes::class, 20)->create();
     }
 }
